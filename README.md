@@ -68,6 +68,10 @@ All services are accessible under `{grafana,prom,loki,tempo}.${domain}`
 For example you can access grafana through your browser if you navigate
 at grafana.grafana-sandbox.com
 
+### Enabling HTTPS
+
+`$ sudo make install-certificates`
+
 ## Roadmap
 
 - [] HTTPS support

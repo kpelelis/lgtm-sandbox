@@ -17,9 +17,11 @@ services:
         ipv4_address: 174.16.1.2
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./configs/traefik.yaml:/etc/traefik/traefik.yaml
+      - ./certs/:/etc/tls/certs/
     labels:
       - "traefik.http.routers.dashboard.rule=Host(`lb.${DOMAIN}`)"
       - "traefik.http.routers.dashboard.service=api@internal"
@@ -42,7 +44,8 @@ services:
       - "traefik.docker.network=grafana-sandbox"
       - "traefik.http.routers.tempo.rule=Host(`tempo.${DOMAIN}`)"
       - "traefik.http.services.tempo.loadbalancer.server.port=14628"
-      - "traefik.http.routers.tempo.entrypoints=web"
+      - "traefik.http.routers.tempo.entrypoints=http"
+      - "traefik.http.routers.tempo.tls=true"
 
   loki:
     image: grafana/loki:latest
@@ -64,7 +67,8 @@ services:
       - "traefik.docker.network=grafana-sandbox"
       - "traefik.http.routers.loki.rule=Host(`loki.${DOMAIN}`)"
       - "traefik.http.services.loki.loadbalancer.server.port=3100"
-      - "traefik.http.routers.loki.entrypoints=web"
+      - "traefik.http.routers.loki.entrypoints=http"
+      - "traefik.http.routers.loki.tls=true"
 
   promtail:
     image: grafana/promtail
@@ -89,7 +93,8 @@ services:
       - "traefik.docker.network=grafana-sandbox"
       - "traefik.http.routers.prom.rule=Host(`prom.${DOMAIN}`)"
       - "traefik.http.services.prom.loadbalancer.server.port=9090"
-      - "traefik.http.routers.prom.entrypoints=web"
+      - "traefik.http.routers.prom.entrypoints=http"
+      - "traefik.http.routers.prom.tls=true"
     volumes:
       - ./configs/prometheus.yaml:/etc/prometheus.yaml
     ports:
@@ -113,7 +118,8 @@ services:
       - "traefik.docker.network=grafana-sandbox"
       - "traefik.http.routers.grafana.rule=Host(`grafana.${DOMAIN}`)"
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"
-      - "traefik.http.routers.grafana.entrypoints=web"
+      - "traefik.http.routers.grafana.entrypoints=http"
+      - "traefik.http.routers.grafana.tls=true"
 
 networks:
   grafana-sandbox:

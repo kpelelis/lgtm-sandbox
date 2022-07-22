@@ -5,3 +5,4 @@ configs/grafana/datasources.yml
 configs/grafana/grafana.ini
 configs/dnsmasq.conf
 configs/traefik.yaml
+certs/*

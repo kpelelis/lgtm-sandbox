@@ -5,6 +5,21 @@ providers:
 api:
   dashboard: true
 
-entrypoints:
-  web:
-    address: 80
+entryPoints:
+  http:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: https
+          scheme: https
+  https:
+    address: ":443"
+
+log:
+  level: DEBUG
+
+tls:
+  certificates:
+    - certFile: /etc/tls/certs/${DOMAIN}.cert
+    - keyFile: /etc/tls/certs/${DOMAIN}.key
