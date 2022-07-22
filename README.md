@@ -35,22 +35,15 @@ network IP.
 Note: In case you are using a different hostname, you also need to
 update the `./configs/grafana/datasources.yml` file to match that
 
-### Generate env file
+### Generate env file and configs
 
 You need to generate the env file
 
 ```
 $ cp .env.example .env
+$ make
 ```
 
-And then replace the variables to your needs
-
-```
-DOMAIN: The domain/hostname used throughout the Installation
-DNSMASQ_IMAGE: Image to use for dnsmasq. This should be 
-  jcowey/dnsmasq-arm for ARM based machines
-  strm/dnsmasq for others
-```
 
 ### Run the compose
 
@@ -80,5 +73,5 @@ at grafana.grafana-sandbox.com
 - [] HTTPS support
 - [] Fix tempo
 - [] Simplify setup with a Makefile
-- [] Config generators
+- [X] Config generators
 - [] Multi tenancy

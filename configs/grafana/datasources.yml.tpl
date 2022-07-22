@@ -5,7 +5,7 @@ datasources:
   type: prometheus
   access: proxy
   orgId: 1
-  url: http://prom.grafana-sandbox.local
+  url: http://prom.${DOMAIN}
   isDefault: false
   version: 1
   editable: true
@@ -13,7 +13,7 @@ datasources:
   type: tempo
   access: proxy
   orgId: 1
-  url: http://tempo.grafana-sandbox.local
+  url: http://tempo.${DOMAIN}
   isDefault: true
   version: 1
   editable: true
@@ -23,7 +23,7 @@ datasources:
   type: loki
   access: proxy
   orgId: 1
-  url: http://loki.grafana-sandbox.local
+  url: http://loki.${DOMAIN}
   isDefault: false
   version: 1
   editable: true

@@ -17,14 +17,9 @@ services:
         ipv4_address: 174.16.1.2
     ports:
       - "80:80"
-    command:
-      - --providers.docker
-      - --providers.docker.network=grafana-sandbox
-      - --providers.docker.watch
-      - --api.dashboard=true
-      - --entrypoints.web.address=:80
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./configs/traefik.yaml:/etc/traefik/traefik.yaml
     labels:
       - "traefik.http.routers.dashboard.rule=Host(`lb.${DOMAIN}`)"
       - "traefik.http.routers.dashboard.service=api@internal"

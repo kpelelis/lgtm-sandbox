@@ -1,3 +1,7 @@
 .DS_Store
 .env
 tempo-data/
+configs/grafana/datasources.yml
+configs/grafana/grafana.ini
+configs/dnsmasq.conf
+configs/traefik.yaml
